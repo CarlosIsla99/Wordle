@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js"></script>
+
+</head>
+
+<body>
+
+    <button id="onclick" value="0" onclick="comprobar()">Comprobar</button>
+
+    <main>
+
+        <div id="intento1" class="intentos">
+            <div class="letras">
+                <input class="letras0" maxlength="1" type="text" name="" id="inLetra1">
+            </div>
+            <div class="letras">
+                <input class="letras0" maxlength="1" type="text" name="" id="inLetra2">
+            </div>
+            <div class="letras">
+                <input class="letras0" maxlength="1" type="text" name="" id="inLetra3">
+            </div>
+            <div class="letras">
+                <input class="letras0" maxlength="1" type="text" name="" id="inLetra4">
+            </div>
+            <div class="letras">
+                <input class="letras0" maxlength="1" type="text" name="" id="inLetra5">
+            </div>
+        </div>
+
+        <div id="intento2" class="intentos">
+            <div class="letras">
+                <input class="letras1" maxlength="1" type="text" name="" id="inLetra6">
+            </div>
+            <div class="letras">
+                <input class="letras1" maxlength="1" type="text" name="" id="inLetra7">
+            </div>
+            <div class="letras">
+                <input class="letras1" maxlength="1" type="text" name="" id="inLetra8">
+            </div>
+            <div class="letras">
+                <input class="letras1" maxlength="1" type="text" name="" id="inLetra9">
+            </div>
+            <div class="letras">
+                <input class="letras1" maxlength="1" type="text" name="" id="inLetra10">
+            </div>
+        </div>
+
+        <div id="intento3" class="intentos">
+            <div class="letras">
+                <input class="letras2" maxlength="1" type="text" name="" id="inLetra11">
+            </div>
+            <div class="letras">
+                <input class="letras2" maxlength="1" type="text" name="" id="inLetra12">
+            </div>
+            <div class="letras">
+                <input class="letras2" maxlength="1" type="text" name="" id="inLetra13">
+            </div>
+            <div class="letras">
+                <input class="letras2" maxlength="1" type="text" name="" id="inLetra14">
+            </div>
+            <div class="letras">
+                <input class="letras2" maxlength="1" type="text" name="" id="inLetra15">
+            </div>
+        </div>
+
+        <div id="intento4" class="intentos">
+            <div class="letras">
+                <input class="letras3" maxlength="1" type="text" name="" id="inLetra16">
+            </div>
+            <div class="letras">
+                <input class="letras3" maxlength="1" type="text" name="" id="inLetra17">
+            </div>
+            <div class="letras">
+                <input class="letras3" maxlength="1" type="text" name="" id="inLetra18">
+            </div>
+            <div class="letras">
+                <input class="letras3" maxlength="1" type="text" name="" id="inLetra19">
+            </div>
+            <div class="letras">
+                <input class="letras3" maxlength="1" type="text" name="" id="inLetra20">
+            </div>
+        </div>
+
+        <div id="intento5" class="intentos">
+            <div class="letras">
+                <input class="letras4" maxlength="1" type="text" name="" id="inLetra21">
+            </div>
+            <div class="letras">
+                <input class="letras4" maxlength="1" type="text" name="" id="inLetra22">
+            </div>
+            <div class="letras">
+                <input class="letras4" maxlength="1" type="text" name="" id="inLetra23">
+            </div>
+            <div class="letras">
+                <input class="letras4" maxlength="1" type="text" name="" id="inLetra24">
+            </div>
+            <div class="letras">
+                <input class="letras4" maxlength="1" type="text" name="" id="inLetra25">
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+        function comprobar() {
+
+            let letra1 = document.getElementById("inLetra1").value;
+            let letra2 = document.getElementById("inLetra2").value;
+            let letra3 = document.getElementById("inLetra3").value;
+            let letra4 = document.getElementById("inLetra4").value;
+            let letra5 = document.getElementById("inLetra5").value;
+
+            let letra6 = document.getElementById("inLetra6").value;
+            let letra7 = document.getElementById("inLetra7").value;
+            let letra8 = document.getElementById("inLetra8").value;
+            let letra9 = document.getElementById("inLetra9").value;
+            let letra10 = document.getElementById("inLetra10").value;
+            
+            let letra11 = document.getElementById("inLetra11").value;
+            let letra12 = document.getElementById("inLetra12").value;
+            let letra13 = document.getElementById("inLetra13").value;
+            let letra14 = document.getElementById("inLetra14").value;
+            let letra15 = document.getElementById("inLetra15").value;
+
+            let letra16 = document.getElementById("inLetra16").value;
+            let letra17 = document.getElementById("inLetra17").value;
+            let letra18 = document.getElementById("inLetra18").value;
+            let letra19 = document.getElementById("inLetra19").value;
+            let letra20 = document.getElementById("inLetra20").value;
+
+            let letra21 = document.getElementById("inLetra21").value;
+            let letra22 = document.getElementById("inLetra22").value;
+            let letra23 = document.getElementById("inLetra23").value;
+            let letra24 = document.getElementById("inLetra24").value;
+            let letra25 = document.getElementById("inLetra25").value;
+
+            juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7, letra8, letra9, letra10, letra11, letra12, letra13, letra14, letra15, letra16, letra17, letra18, letra19, letra20, letra21, letra22, letra23, letra24, letra25);
+        }
+
+    </script>
+
+</body>
+
+</html>

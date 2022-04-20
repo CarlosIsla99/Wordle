@@ -1,0 +1,34 @@
+/* .letras {
+    height: 90px;
+    width: 90px;
+    font-size: 80px;
+    text-align: center;
+} */
+body {
+    background-image: url(../img/nicolas.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.letras input {
+    border: 3px solid;
+    border-radius: 5px;
+    height: 90px;
+    width: 90px;
+    font-size: 80px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+}
+
+.intentos {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
