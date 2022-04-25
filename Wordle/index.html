@@ -5,7 +5,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordle</title>
+    <title>Nicolas Wordle</title>
+    <link rel="icon" type="image/x-icon" href="img/nicolas.jpg">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/index.js"></script>
 
@@ -15,97 +16,109 @@
 
     <main>
 
-        <div id="intento1" class="intentos">
-            <div class="letras">
-                <input class="letras0" maxlength="1" type="text" name="" id="inLetra1">
+        <aside id="publicidad1" class="publicidad">
+            PUBLICIDAD
+        </aside>
+
+        <div class="cuadroInputs">
+
+            <div id="intento1" class="intentos">
+                <div class="letras">
+                    <input class="letras0" maxlength="1" type="text" name="" id="inLetra1">
+                </div>
+                <div class="letras">
+                    <input class="letras0" maxlength="1" type="text" name="" id="inLetra2">
+                </div>
+                <div class="letras">
+                    <input class="letras0" maxlength="1" type="text" name="" id="inLetra3">
+                </div>
+                <div class="letras">
+                    <input class="letras0" maxlength="1" type="text" name="" id="inLetra4">
+                </div>
+                <div class="letras">
+                    <input class="letras0" maxlength="1" type="text" name="" id="inLetra5">
+                </div>
             </div>
-            <div class="letras">
-                <input class="letras0" maxlength="1" type="text" name="" id="inLetra2">
+
+            <div id="intento2" class="intentos">
+                <div class="letras">
+                    <input class="letras1" maxlength="1" type="text" name="" id="inLetra6">
+                </div>
+                <div class="letras">
+                    <input class="letras1" maxlength="1" type="text" name="" id="inLetra7">
+                </div>
+                <div class="letras">
+                    <input class="letras1" maxlength="1" type="text" name="" id="inLetra8">
+                </div>
+                <div class="letras">
+                    <input class="letras1" maxlength="1" type="text" name="" id="inLetra9">
+                </div>
+                <div class="letras">
+                    <input class="letras1" maxlength="1" type="text" name="" id="inLetra10">
+                </div>
             </div>
-            <div class="letras">
-                <input class="letras0" maxlength="1" type="text" name="" id="inLetra3">
+
+            <div id="intento3" class="intentos">
+                <div class="letras">
+                    <input class="letras2" maxlength="1" type="text" name="" id="inLetra11">
+                </div>
+                <div class="letras">
+                    <input class="letras2" maxlength="1" type="text" name="" id="inLetra12">
+                </div>
+                <div class="letras">
+                    <input class="letras2" maxlength="1" type="text" name="" id="inLetra13">
+                </div>
+                <div class="letras">
+                    <input class="letras2" maxlength="1" type="text" name="" id="inLetra14">
+                </div>
+                <div class="letras">
+                    <input class="letras2" maxlength="1" type="text" name="" id="inLetra15">
+                </div>
             </div>
-            <div class="letras">
-                <input class="letras0" maxlength="1" type="text" name="" id="inLetra4">
+
+            <div id="intento4" class="intentos">
+                <div class="letras">
+                    <input class="letras3" maxlength="1" type="text" name="" id="inLetra16">
+                </div>
+                <div class="letras">
+                    <input class="letras3" maxlength="1" type="text" name="" id="inLetra17">
+                </div>
+                <div class="letras">
+                    <input class="letras3" maxlength="1" type="text" name="" id="inLetra18">
+                </div>
+                <div class="letras">
+                    <input class="letras3" maxlength="1" type="text" name="" id="inLetra19">
+                </div>
+                <div class="letras">
+                    <input class="letras3" maxlength="1" type="text" name="" id="inLetra20">
+                </div>
             </div>
-            <div class="letras">
-                <input class="letras0" maxlength="1" type="text" name="" id="inLetra5">
+
+            <div id="intento5" class="intentos">
+                <div class="letras">
+                    <input class="letras4" maxlength="1" type="text" name="" id="inLetra21">
+                </div>
+                <div class="letras">
+                    <input class="letras4" maxlength="1" type="text" name="" id="inLetra22">
+                </div>
+                <div class="letras">
+                    <input class="letras4" maxlength="1" type="text" name="" id="inLetra23">
+                </div>
+                <div class="letras">
+                    <input class="letras4" maxlength="1" type="text" name="" id="inLetra24">
+                </div>
+                <div class="letras">
+                    <input class="letras4" maxlength="1" type="text" name="" id="inLetra25">
+                </div>
             </div>
+
+            <button id="onclick" value="0" onclick="comprobar()">Comprobar</button>
+
         </div>
 
-        <div id="intento2" class="intentos">
-            <div class="letras">
-                <input class="letras1" maxlength="1" type="text" name="" id="inLetra6">
-            </div>
-            <div class="letras">
-                <input class="letras1" maxlength="1" type="text" name="" id="inLetra7">
-            </div>
-            <div class="letras">
-                <input class="letras1" maxlength="1" type="text" name="" id="inLetra8">
-            </div>
-            <div class="letras">
-                <input class="letras1" maxlength="1" type="text" name="" id="inLetra9">
-            </div>
-            <div class="letras">
-                <input class="letras1" maxlength="1" type="text" name="" id="inLetra10">
-            </div>
-        </div>
-
-        <div id="intento3" class="intentos">
-            <div class="letras">
-                <input class="letras2" maxlength="1" type="text" name="" id="inLetra11">
-            </div>
-            <div class="letras">
-                <input class="letras2" maxlength="1" type="text" name="" id="inLetra12">
-            </div>
-            <div class="letras">
-                <input class="letras2" maxlength="1" type="text" name="" id="inLetra13">
-            </div>
-            <div class="letras">
-                <input class="letras2" maxlength="1" type="text" name="" id="inLetra14">
-            </div>
-            <div class="letras">
-                <input class="letras2" maxlength="1" type="text" name="" id="inLetra15">
-            </div>
-        </div>
-
-        <div id="intento4" class="intentos">
-            <div class="letras">
-                <input class="letras3" maxlength="1" type="text" name="" id="inLetra16">
-            </div>
-            <div class="letras">
-                <input class="letras3" maxlength="1" type="text" name="" id="inLetra17">
-            </div>
-            <div class="letras">
-                <input class="letras3" maxlength="1" type="text" name="" id="inLetra18">
-            </div>
-            <div class="letras">
-                <input class="letras3" maxlength="1" type="text" name="" id="inLetra19">
-            </div>
-            <div class="letras">
-                <input class="letras3" maxlength="1" type="text" name="" id="inLetra20">
-            </div>
-        </div>
-
-        <div id="intento5" class="intentos">
-            <div class="letras">
-                <input class="letras4" maxlength="1" type="text" name="" id="inLetra21">
-            </div>
-            <div class="letras">
-                <input class="letras4" maxlength="1" type="text" name="" id="inLetra22">
-            </div>
-            <div class="letras">
-                <input class="letras4" maxlength="1" type="text" name="" id="inLetra23">
-            </div>
-            <div class="letras">
-                <input class="letras4" maxlength="1" type="text" name="" id="inLetra24">
-            </div>
-            <div class="letras">
-                <input class="letras4" maxlength="1" type="text" name="" id="inLetra25">
-            </div>
-        </div>
-
-        <button id="onclick" value="0" onclick="comprobar()">Comprobar</button>
+        <aside id="publicidad2" class="publicidad">
+            PUBLICIDAD
+        </aside>
 
     </main>
 
@@ -124,7 +137,7 @@
             let letra8 = document.getElementById("inLetra8").value;
             let letra9 = document.getElementById("inLetra9").value;
             let letra10 = document.getElementById("inLetra10").value;
-            
+
             let letra11 = document.getElementById("inLetra11").value;
             let letra12 = document.getElementById("inLetra12").value;
             let letra13 = document.getElementById("inLetra13").value;

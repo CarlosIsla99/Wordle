@@ -10,15 +10,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
 let palabraParaAdivinar;
 let backUpPalabar;
+let result;
 
 // Cargar la lista de palabras
 fetch("./lista/lista.txt").then((response) => {
     return response.text();
 })
 .then((text) => {
-    let result = text.trim().split(/\s+/); // Escribe la lista con comas,etc. para leerlo mejor
-    palabraParaAdivinar = result[Math.floor(Math.random() * result.length)];
-    palabraParaAdivinar = palabraParaAdivinar.toLocaleLowerCase(); // Elige aleatpriamente una palabra de la lista
+    result = text.trim().split(/\s+/); // Escribe la lista con comas,etc. para leerlo mejor
+    palabraParaAdivinar = result[Math.floor(Math.random() * result.length)]; // Elige aleatpriamente una palabra de la lista
+    palabraParaAdivinar = palabraParaAdivinar.toLocaleLowerCase(); // Pasa a minúscul la palabra elegida
     console.log('La palabra es: '+palabraParaAdivinar);
     backUpPalabar = palabraParaAdivinar; // Un backUp de la palabra por adivinar
 });
@@ -37,6 +38,24 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     var letrasIntroducisdasFila3 = [letra11, letra12, letra13, letra14, letra15];
     var letrasIntroducisdasFila4 = [letra16, letra17, letra18, letra19, letra20];
     var letrasIntroducisdasFila5 = [letra21, letra22, letra23, letra24, letra25];
+
+    // Pasa a minúsuclas todas las letras introducidas para evitar errores
+    // entre las letras que introduzca el usuario y la palabra elegida
+    letrasIntroducisdasFila1 = letrasIntroducisdasFila1.map(element => {
+        return element.toLowerCase();
+    });
+    letrasIntroducisdasFila2 = letrasIntroducisdasFila2.map(element => {
+        return element.toLowerCase();
+    });
+    letrasIntroducisdasFila3 = letrasIntroducisdasFila3.map(element => {
+        return element.toLowerCase();
+    });
+    letrasIntroducisdasFila4 = letrasIntroducisdasFila4.map(element => {
+        return element.toLowerCase();
+    });
+    letrasIntroducisdasFila5 = letrasIntroducisdasFila5.map(element => {
+        return element.toLowerCase();
+    });
 
     // Referencia a cada fila por cada onclick
     var letras = document.querySelectorAll('.letras' + document.getElementById("onclick").value);
