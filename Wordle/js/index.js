@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', function () {
     for (let i = 6; i <= 25; i++) {
         document.getElementById('inLetra' + i).setAttribute('disabled', true);
     }
-    
+
 });
 
 let palabraParaAdivinar;
@@ -16,13 +16,13 @@ let result;
 fetch("./lista/lista.txt").then((response) => {
     return response.text();
 })
-.then((text) => {
-    result = text.trim().split(/\s+/); // Escribe la lista con comas,etc. para leerlo mejor
-    palabraParaAdivinar = result[Math.floor(Math.random() * result.length)]; // Elige aleatpriamente una palabra de la lista
-    palabraParaAdivinar = palabraParaAdivinar.toLocaleLowerCase(); // Pasa a minúscul la palabra elegida
-    console.log('La palabra es: '+palabraParaAdivinar);
-    backUpPalabar = palabraParaAdivinar; // Un backUp de la palabra por adivinar
-});
+    .then((text) => {
+        result = text.trim().split(/\s+/); // Escribe la lista con comas,etc. para leerlo mejor
+        palabraParaAdivinar = result[Math.floor(Math.random() * result.length)]; // Elige aleatpriamente una palabra de la lista
+        palabraParaAdivinar = palabraParaAdivinar.toLocaleLowerCase(); // Pasa a minúscul la palabra elegida
+        console.log('La palabra es: ' + palabraParaAdivinar);
+        backUpPalabar = palabraParaAdivinar; // Un backUp de la palabra por adivinar
+    });
 
 
 // recive las 25 letras del usuario
@@ -61,6 +61,37 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     var letras = document.querySelectorAll('.letras' + document.getElementById("onclick").value);
     var resultadoPalabraAdivinar = null; // Contenedor de la palabra por adivinar para pruebas
     var camposVacios = false; // Para saber si ha rellenado todos los campos
+
+    // Comprueba que la palabra introducida por el usuario exista
+    let existe = false;
+    let palabraComp = null;
+
+    // Forma la palabra que introduce el usuario según en que fila está escribiendo
+    if(fila == 0){
+        palabraComp = letrasIntroducisdasFila1[0] + letrasIntroducisdasFila1[1] + letrasIntroducisdasFila1[2] + letrasIntroducisdasFila1[3] + letrasIntroducisdasFila1[4];
+    } else if (fila == 1){
+        palabraComp = letrasIntroducisdasFila2[0] + letrasIntroducisdasFila2[1] + letrasIntroducisdasFila2[2] + letrasIntroducisdasFila2[3] + letrasIntroducisdasFila2[4];
+    } else if (fila == 2){
+        palabraComp = letrasIntroducisdasFila3[0] + letrasIntroducisdasFila3[1] + letrasIntroducisdasFila3[2] + letrasIntroducisdasFila3[3] + letrasIntroducisdasFila3[4];
+    } else if (fila == 3){
+        palabraComp = letrasIntroducisdasFila4[0] + letrasIntroducisdasFila4[1] + letrasIntroducisdasFila4[2] + letrasIntroducisdasFila4[3] + letrasIntroducisdasFila4[4];
+    } else if (fila == 4){
+        palabraComp = letrasIntroducisdasFila5[0] + letrasIntroducisdasFila5[1] + letrasIntroducisdasFila5[2] + letrasIntroducisdasFila5[3] + letrasIntroducisdasFila5[4];
+    }
+
+    // Comprueba si la palabra formada anteriormente existe
+    for (let z = 0; z < result.length; z++) {
+        if (result[z].toLowerCase() == palabraComp) {
+            existe = true;
+            break;
+        } 
+    }
+
+    // Alert si la palabra introducida no existe y detiene el programa
+    if(existe == false){
+        alert('¡Esa palabra no existe! Escribe otra');
+        return;
+    }
 
     // Primera fila de carácteres
     if (fila == 0) {
@@ -331,5 +362,4 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
             }
         }
     }
-
 }
