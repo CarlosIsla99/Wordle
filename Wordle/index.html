@@ -22,9 +22,9 @@
         </aside>
 
         <div class="cuadroInputs">
-            
+
             <div id="descartes">
-                
+
             </div>
 
             <div id="intento1" class="intentos">
@@ -117,7 +117,11 @@
                 </div>
             </div>
 
-            <button id="onclick" value="0" onclick="comprobar()">Comprobar</button>
+            <div class="botones">
+                <button id="onclick" value="0" onclick="comprobar()">Comprobar</button>
+                <button id="pista" value="2" onclick="pista()">Pista</button>
+            </div>
+
 
         </div>
 
@@ -133,7 +137,7 @@
         $(".letras").keyup(function (e) {
             if (e.keyCode == 8) {
                 $(this).closest('.letras').prev().find('input').focus();
-            } else if(e.keyCode != 9){
+            } else if (e.keyCode != 9) {
                 $(this).closest('.letras').next().find('input').focus();
             }
         });
@@ -179,6 +183,10 @@
             let letra25 = document.getElementById("inLetra25").value;
 
             juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7, letra8, letra9, letra10, letra11, letra12, letra13, letra14, letra15, letra16, letra17, letra18, letra19, letra20, letra21, letra22, letra23, letra24, letra25);
+        }
+
+        function pista() {
+            darPista();
         }
 
     </script>

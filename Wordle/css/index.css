@@ -19,7 +19,9 @@ main {
 #descartes {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     column-gap: 0.25rem;
+    row-gap: 0.2rem;
     margin-bottom: 1rem;
 }
 

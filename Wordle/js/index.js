@@ -66,17 +66,24 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     let palabraComp = null;
 
     // Forma la palabra que introduce el usuario según en que fila está escribiendo
-    if (fila == 0) {
-        palabraComp = letrasIntroducisdasFila1[0] + letrasIntroducisdasFila1[1] + letrasIntroducisdasFila1[2] + letrasIntroducisdasFila1[3] + letrasIntroducisdasFila1[4];
-    } else if (fila == 1) {
-        palabraComp = letrasIntroducisdasFila2[0] + letrasIntroducisdasFila2[1] + letrasIntroducisdasFila2[2] + letrasIntroducisdasFila2[3] + letrasIntroducisdasFila2[4];
-    } else if (fila == 2) {
-        palabraComp = letrasIntroducisdasFila3[0] + letrasIntroducisdasFila3[1] + letrasIntroducisdasFila3[2] + letrasIntroducisdasFila3[3] + letrasIntroducisdasFila3[4];
-    } else if (fila == 3) {
-        palabraComp = letrasIntroducisdasFila4[0] + letrasIntroducisdasFila4[1] + letrasIntroducisdasFila4[2] + letrasIntroducisdasFila4[3] + letrasIntroducisdasFila4[4];
-    } else if (fila == 4) {
-        palabraComp = letrasIntroducisdasFila5[0] + letrasIntroducisdasFila5[1] + letrasIntroducisdasFila5[2] + letrasIntroducisdasFila5[3] + letrasIntroducisdasFila5[4];
+    switch (fila) {
+        case '0':
+            palabraComp = letrasIntroducisdasFila1[0] + letrasIntroducisdasFila1[1] + letrasIntroducisdasFila1[2] + letrasIntroducisdasFila1[3] + letrasIntroducisdasFila1[4];
+            break;
+        case '1':
+            palabraComp = letrasIntroducisdasFila2[0] + letrasIntroducisdasFila2[1] + letrasIntroducisdasFila2[2] + letrasIntroducisdasFila2[3] + letrasIntroducisdasFila2[4];
+            break;
+        case '2':
+            palabraComp = letrasIntroducisdasFila3[0] + letrasIntroducisdasFila3[1] + letrasIntroducisdasFila3[2] + letrasIntroducisdasFila3[3] + letrasIntroducisdasFila3[4];
+            break;
+        case '3':
+            palabraComp = letrasIntroducisdasFila4[0] + letrasIntroducisdasFila4[1] + letrasIntroducisdasFila4[2] + letrasIntroducisdasFila4[3] + letrasIntroducisdasFila4[4];
+            break;
+        case '4':
+            palabraComp = letrasIntroducisdasFila5[0] + letrasIntroducisdasFila5[1] + letrasIntroducisdasFila5[2] + letrasIntroducisdasFila5[3] + letrasIntroducisdasFila5[4];
     }
+
+    $('#pista').val(0); // Reinicia a 0 los intentos de pista
 
     // Comprueba si todos los campos están rellenos
     for (let y = 0; y < letrasIntroducisdasFila1.length; y++) {
@@ -104,180 +111,175 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     }
 
     // Primera fila de carácteres
-    if (fila == 0) {
-
-        // Pone en verde los carácteres acertados
-        for (let z = 0; z < letrasIntroducisdasFila1.length; z++) {
-            if (letrasIntroducisdasFila1[z] == palabraParaAdivinar.charAt(z)) {
-                document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
-                resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila1[z], '0');
-                palabraParaAdivinar = resultadoPalabraAdivinar;
-                letrasIntroducisdasFila1[z] = '1';
-                acertados = acertados + 1;
-            }
-        }
-
-        // Pone en naranja los carácteres acertados en el sitio que no correspone
-        // y pone en gris los carácteres inexistentes
-        for (let z = 0; z < letrasIntroducisdasFila1.length; z++) {
-            for (let i = 0; i < letrasIntroducisdasFila1.length; i++) {
-                if (letrasIntroducisdasFila1[z] != '1' && (palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2')) {
-                    if (letrasIntroducisdasFila1[z] == palabraParaAdivinar.charAt(i)) {
-                        palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila1[z], '2');
-                        document.getElementById(letras[z].id).style.backgroundColor = "orange";
-                        break;
-                    } else {
-                        document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
-                    }
+    switch (fila) {
+        case '0':
+            // Pone en verde los carácteres acertados
+            for (let z = 0; z < letrasIntroducisdasFila1.length; z++) {
+                if (letrasIntroducisdasFila1[z] == palabraParaAdivinar.charAt(z)) {
+                    document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
+                    resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila1[z], '0');
+                    palabraParaAdivinar = resultadoPalabraAdivinar;
+                    letrasIntroducisdasFila1[z] = '1';
+                    acertados = acertados + 1;
                 }
             }
-            // Si no es acertada (verde / naranja) se añade al array 'letrasNoExistentes'
-            if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
-                letrasNoExistentes.push(document.getElementById(letras[z].id).value);
-            }
-        }
 
-        // Se repite el mimsmo proceso anterior
-    } else if (fila == 1) {
-
-        palabraParaAdivinar = backUpPalabar;
-
-        for (let z = 0; z < letrasIntroducisdasFila2.length; z++) {
-            if (letrasIntroducisdasFila2[z] == palabraParaAdivinar.charAt(z)) {
-                document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
-                resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '0');
-                palabraParaAdivinar = resultadoPalabraAdivinar;
-                letrasIntroducisdasFila2[z] = '1';
-                acertados = acertados + 1;
-            }
-        }
-
-        for (let z = 0; z < letrasIntroducisdasFila2.length; z++) {
-            for (let i = 0; i < letrasIntroducisdasFila2.length; i++) {
-                if (letrasIntroducisdasFila2[z] != '1' && palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2') {
-                    if (letrasIntroducisdasFila2[z] == palabraParaAdivinar.charAt(i)) {
-                        palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '2');
-                        document.getElementById(letras[z].id).style.backgroundColor = "orange";
-                        break;
-                    } else {
-                        document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
+            // Pone en naranja los carácteres acertados en el sitio que no correspone
+            // y pone en gris los carácteres inexistentes
+            for (let z = 0; z < letrasIntroducisdasFila1.length; z++) {
+                for (let i = 0; i < letrasIntroducisdasFila1.length; i++) {
+                    if (letrasIntroducisdasFila1[z] != '1' && (palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2')) {
+                        if (letrasIntroducisdasFila1[z] == palabraParaAdivinar.charAt(i)) {
+                            palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila1[z], '2');
+                            document.getElementById(letras[z].id).style.backgroundColor = "orange";
+                            break;
+                        } else {
+                            document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
+                        }
                     }
                 }
-            }
-            if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
-                letrasNoExistentes.push(document.getElementById(letras[z].id).value);
-            }
-        }
-
-        // Se repite el mimsmo proceso anterior
-    } else if (fila == 2) {
-
-        palabraParaAdivinar = backUpPalabar;
-
-        for (let z = 0; z < letrasIntroducisdasFila3.length; z++) {
-            if (letrasIntroducisdasFila3[z] == palabraParaAdivinar.charAt(z)) {
-                document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
-                resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila3[z], '0');
-                palabraParaAdivinar = resultadoPalabraAdivinar;
-                letrasIntroducisdasFila3[z] = '1';
-                acertados = acertados + 1;
-            }
-        }
-
-        for (let z = 0; z < letrasIntroducisdasFila3.length; z++) {
-            for (let i = 0; i < letrasIntroducisdasFila3.length; i++) {
-                if (letrasIntroducisdasFila3[z] != '1' && palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2') {
-                    if (letrasIntroducisdasFila3[z] == palabraParaAdivinar.charAt(i)) {
-                        palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '2');
-                        document.getElementById(letras[z].id).style.backgroundColor = "orange";
-                        break;
-                    } else {
-                        document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
-                    }
+                // Si no es acertada (verde / naranja) se añade al array 'letrasNoExistentes'
+                if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
+                    letrasNoExistentes.push(document.getElementById(letras[z].id).value);
                 }
             }
-            if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
-                letrasNoExistentes.push(document.getElementById(letras[z].id).value);
-            }
-        }
+            break;
+        case '1':
 
-        // Se repite el mimsmo proceso anterior
-    } else if (fila == 3) {
+            palabraParaAdivinar = backUpPalabar;
 
-        palabraParaAdivinar = backUpPalabar;
-
-        for (let z = 0; z < letrasIntroducisdasFila4.length; z++) {
-            if (letrasIntroducisdasFila4[z] == palabraParaAdivinar.charAt(z)) {
-                document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
-                resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila4[z], '0');
-                palabraParaAdivinar = resultadoPalabraAdivinar;
-                letrasIntroducisdasFila4[z] = '1';
-                acertados = acertados + 1;
-            }
-        }
-
-        for (let z = 0; z < letrasIntroducisdasFila4.length; z++) {
-            for (let i = 0; i < letrasIntroducisdasFila4.length; i++) {
-                if (letrasIntroducisdasFila4[z] != '1' && palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2') {
-                    if (letrasIntroducisdasFila4[z] == palabraParaAdivinar.charAt(i)) {
-                        palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '2');
-                        document.getElementById(letras[z].id).style.backgroundColor = "orange";
-                        break;
-                    } else {
-                        document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
-                    }
+            for (let z = 0; z < letrasIntroducisdasFila2.length; z++) {
+                if (letrasIntroducisdasFila2[z] == palabraParaAdivinar.charAt(z)) {
+                    document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
+                    resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '0');
+                    palabraParaAdivinar = resultadoPalabraAdivinar;
+                    letrasIntroducisdasFila2[z] = '1';
+                    acertados = acertados + 1;
                 }
             }
-            if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
-                letrasNoExistentes.push(document.getElementById(letras[z].id).value);
-            }
-        }
 
-        // Se repite el mimsmo proceso anterior
-    } else if (fila == 4) {
-
-        palabraParaAdivinar = backUpPalabar;
-
-        for (let z = 0; z < letrasIntroducisdasFila5.length; z++) {
-            if (letrasIntroducisdasFila5[z] == palabraParaAdivinar.charAt(z)) {
-                document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
-                resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila5[z], '0');
-                palabraParaAdivinar = resultadoPalabraAdivinar;
-                letrasIntroducisdasFila5[z] = '1';
-                acertados = acertados + 1;
-            }
-        }
-
-        for (let z = 0; z < letrasIntroducisdasFila5.length; z++) {
-            for (let i = 0; i < letrasIntroducisdasFila5.length; i++) {
-                if (letrasIntroducisdasFila5[z] != '1' && palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2') {
-                    if (letrasIntroducisdasFila5[z] == palabraParaAdivinar.charAt(i)) {
-                        palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '2');
-                        document.getElementById(letras[z].id).style.backgroundColor = "orange";
-                        break;
-                    } else {
-                        document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
+            for (let z = 0; z < letrasIntroducisdasFila2.length; z++) {
+                for (let i = 0; i < letrasIntroducisdasFila2.length; i++) {
+                    if (letrasIntroducisdasFila2[z] != '1' && palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2') {
+                        if (letrasIntroducisdasFila2[z] == palabraParaAdivinar.charAt(i)) {
+                            palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '2');
+                            document.getElementById(letras[z].id).style.backgroundColor = "orange";
+                            break;
+                        } else {
+                            document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
+                        }
                     }
                 }
+                if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
+                    letrasNoExistentes.push(document.getElementById(letras[z].id).value);
+                }
             }
-            if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
-                letrasNoExistentes.push(document.getElementById(letras[z].id).value);
+            break;
+        case '2':
+
+            palabraParaAdivinar = backUpPalabar;
+
+            for (let z = 0; z < letrasIntroducisdasFila3.length; z++) {
+                if (letrasIntroducisdasFila3[z] == palabraParaAdivinar.charAt(z)) {
+                    document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
+                    resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila3[z], '0');
+                    palabraParaAdivinar = resultadoPalabraAdivinar;
+                    letrasIntroducisdasFila3[z] = '1';
+                    acertados = acertados + 1;
+                }
             }
-        }
+
+            for (let z = 0; z < letrasIntroducisdasFila3.length; z++) {
+                for (let i = 0; i < letrasIntroducisdasFila3.length; i++) {
+                    if (letrasIntroducisdasFila3[z] != '1' && palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2') {
+                        if (letrasIntroducisdasFila3[z] == palabraParaAdivinar.charAt(i)) {
+                            palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '2');
+                            document.getElementById(letras[z].id).style.backgroundColor = "orange";
+                            break;
+                        } else {
+                            document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
+                        }
+                    }
+                }
+                if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
+                    letrasNoExistentes.push(document.getElementById(letras[z].id).value);
+                }
+            }
+            break;
+        case '3':
+
+            palabraParaAdivinar = backUpPalabar;
+
+            for (let z = 0; z < letrasIntroducisdasFila4.length; z++) {
+                if (letrasIntroducisdasFila4[z] == palabraParaAdivinar.charAt(z)) {
+                    document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
+                    resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila4[z], '0');
+                    palabraParaAdivinar = resultadoPalabraAdivinar;
+                    letrasIntroducisdasFila4[z] = '1';
+                    acertados = acertados + 1;
+                }
+            }
+
+            for (let z = 0; z < letrasIntroducisdasFila4.length; z++) {
+                for (let i = 0; i < letrasIntroducisdasFila4.length; i++) {
+                    if (letrasIntroducisdasFila4[z] != '1' && palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2') {
+                        if (letrasIntroducisdasFila4[z] == palabraParaAdivinar.charAt(i)) {
+                            palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '2');
+                            document.getElementById(letras[z].id).style.backgroundColor = "orange";
+                            break;
+                        } else {
+                            document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
+                        }
+                    }
+                }
+                if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
+                    letrasNoExistentes.push(document.getElementById(letras[z].id).value);
+                }
+            }
+            break;
+        case '4':
+            palabraParaAdivinar = backUpPalabar;
+
+            for (let z = 0; z < letrasIntroducisdasFila5.length; z++) {
+                if (letrasIntroducisdasFila5[z] == palabraParaAdivinar.charAt(z)) {
+                    document.getElementById(letras[z].id).style.backgroundColor = "lightgreen";
+                    resultadoPalabraAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila5[z], '0');
+                    palabraParaAdivinar = resultadoPalabraAdivinar;
+                    letrasIntroducisdasFila5[z] = '1';
+                    acertados = acertados + 1;
+                }
+            }
+
+            for (let z = 0; z < letrasIntroducisdasFila5.length; z++) {
+                for (let i = 0; i < letrasIntroducisdasFila5.length; i++) {
+                    if (letrasIntroducisdasFila5[z] != '1' && palabraParaAdivinar.charAt(i) != '0' && palabraParaAdivinar.charAt(i) != '2') {
+                        if (letrasIntroducisdasFila5[z] == palabraParaAdivinar.charAt(i)) {
+                            palabraParaAdivinar = palabraParaAdivinar.replace(letrasIntroducisdasFila2[z], '2');
+                            document.getElementById(letras[z].id).style.backgroundColor = "orange";
+                            break;
+                        } else {
+                            document.getElementById(letras[z].id).style.backgroundColor = "rgb(191, 191, 191)";
+                        }
+                    }
+                }
+                if (document.getElementById(letras[z].id).style.backgroundColor != "orange" && document.getElementById(letras[z].id).style.backgroundColor != "lightgreen") {
+                    letrasNoExistentes.push(document.getElementById(letras[z].id).value);
+                }
+            }
 
     }
 
     letrasNoExistentes = [...new Set(letrasNoExistentes)]; // Elimina los duplicados del array
 
     // Elimina de la lista de 'letrasNoExistentes' los duplicados pero que se hayan encontrado
-    for(let y=0; y <= 4; y++){
-        let eliminar = document.getElementsByClassName('letras'+y);
+    for (let y = 0; y <= 4; y++) {
+        let eliminar = document.getElementsByClassName('letras' + y);
         for (let i = 0; i < eliminar.length; i++) {
             if (eliminar[i].style.backgroundColor == 'lightgreen' || eliminar[i].style.backgroundColor == 'orange') {
-                for(let z=0; z < letrasNoExistentes.length; z++){
-                    if(String(eliminar[i].value) == String(letrasNoExistentes[z])){
+                for (let z = 0; z < letrasNoExistentes.length; z++) {
+                    if (String(eliminar[i].value) == String(letrasNoExistentes[z])) {
                         letrasNoExistentes.splice(z, 1);
-                        z=0;
+                        z = 0;
                     }
                 }
             }
@@ -285,6 +287,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     }
 
     // Imprime en el html (#descartes) las letras que no tiene la palabra por adivinar
+    let cont = 0;
     var parsed = "";
     for (let i = 0; i < letrasNoExistentes.length; i++) {
         var myobj = letrasNoExistentes[i];
@@ -311,45 +314,108 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById("onclick").setAttribute("value", contador);
 
         // Si está en la segunda línea
-        if (contador == 1) {
-            // Establece readonly en la primera fila
-            for (let i = 1; i <= 5; i++) {
-                document.getElementById('inLetra' + i).setAttribute('readonly', '');
-            }
-            // Quita disabled a la segunda fila
-            for (let i = 6; i <= 10; i++) {
-                document.getElementById('inLetra' + i).removeAttribute('disabled', '');
-            }
-            // Si está en la tercera línea
-        } else if (contador == 2) {
-            // Establece readonly a las dos primeras filas
-            for (let i = 1; i <= 10; i++) {
-                document.getElementById('inLetra' + i).setAttribute('readonly', '');
-            }
-            // Quita disabled a la tercera fila
-            for (let i = 11; i <= 15; i++) {
-                document.getElementById('inLetra' + i).removeAttribute('disabled', '');
-            }
-            // Si está en la cuarta línea
-        } else if (contador == 3) {
-            // Establece readonly a las tres primeras filas
-            for (let i = 1; i <= 15; i++) {
-                document.getElementById('inLetra' + i).setAttribute('readonly', '');
-            }
-            // Quita disabled a la cuarta fila
-            for (let i = 16; i <= 20; i++) {
-                document.getElementById('inLetra' + i).removeAttribute('disabled', '');
-            }
-            // Si está en la quinta línea
-        } else if (contador == 4) {
-            // Establece readonly a las cuatro primeras filas
-            for (let i = 1; i <= 20; i++) {
-                document.getElementById('inLetra' + i).setAttribute('readonly', '');
-            }
-            // Quita disabled a la quinta fila
-            for (let i = 21; i <= 25; i++) {
-                document.getElementById('inLetra' + i).removeAttribute('disabled', '');
+        switch (contador) {
+            case 1:
+                // Establece readonly en la primera fila
+                for (let i = 1; i <= 5; i++) {
+                    document.getElementById('inLetra' + i).setAttribute('readonly', '');
+                }
+                // Quita disabled a la segunda fila
+                for (let i = 6; i <= 10; i++) {
+                    document.getElementById('inLetra' + i).removeAttribute('disabled', '');
+                }
+                // Si está en la tercera línea
+                break;
+            case 2:
+                // Establece readonly a las dos primeras filas
+                for (let i = 1; i <= 10; i++) {
+                    document.getElementById('inLetra' + i).setAttribute('readonly', '');
+                }
+                // Quita disabled a la tercera fila
+                for (let i = 11; i <= 15; i++) {
+                    document.getElementById('inLetra' + i).removeAttribute('disabled', '');
+                }
+                // Si está en la cuarta línea
+                break;
+            case 3:
+                // Establece readonly a las tres primeras filas
+                for (let i = 1; i <= 15; i++) {
+                    document.getElementById('inLetra' + i).setAttribute('readonly', '');
+                }
+                // Quita disabled a la cuarta fila
+                for (let i = 16; i <= 20; i++) {
+                    document.getElementById('inLetra' + i).removeAttribute('disabled', '');
+                }
+                // Si está en la quinta línea
+                break;
+            case 4:
+                // Establece readonly a las cuatro primeras filas
+                for (let i = 1; i <= 20; i++) {
+                    document.getElementById('inLetra' + i).setAttribute('readonly', '');
+                }
+                // Quita disabled a la quinta fila
+                for (let i = 21; i <= 25; i++) {
+                    document.getElementById('inLetra' + i).removeAttribute('disabled', '');
+                }
+        }
+    }
+}
+
+var lista_elegidas = ['0', '0', '0', '0', '0']; // Lista de letras que han salido como pista
+var pistasRestantes = 2; // El usuario solo tiene 2 pistas
+
+window.setInterval( function(){
+    if (pistasRestantes == 0) {
+        document.getElementById("pista").style.opacity = "0.5";
+    }
+  },10)
+
+function darPista() {
+
+    if (pistasRestantes > 0) {
+        // Divide las letras de la palabra por adivinar y las mete en un array
+        var backUpPalabarDesglosada = [];
+        for (let i = 0; i < 5; i++) {
+            backUpPalabarDesglosada.push(backUpPalabar.charAt(i));
+        }
+
+        // La palabra desglosada que no vamos a modificar para tener como referencia
+        var listaNoCambia = [];
+        for (let i = 0; i < 5; i++) {
+            listaNoCambia.push(backUpPalabar.charAt(i));
+        }
+
+        // Elimina la letra escogida como pista de la lista 'backUpPalabarDesglosada'
+        for (let i = 0; i < lista_elegidas.length; i++) {
+            for (let z = 0; z < backUpPalabarDesglosada.length; z++) {
+                if (lista_elegidas[i] == backUpPalabarDesglosada[z]) {
+                    backUpPalabarDesglosada.splice(z, 1);
+                    break;
+                }
             }
         }
+
+        // Elige una letra del array de forma aleatoria
+        var letraPista = backUpPalabarDesglosada[Math.floor(Math.random() * backUpPalabarDesglosada.length)];
+
+        // Guardala posición de la letra escogida
+        for (let i = 0; i < listaNoCambia.length; i++) {
+            if (letraPista == listaNoCambia[i] && lista_elegidas[i] == '0') {
+                var posicion = i;
+                break;
+            }
+        }
+
+        // Una lista con las letras ya elegidas
+        lista_elegidas.splice(posicion, 1, letraPista);
+
+        // Recoge la posición de la fila en la que está
+        var filaActual = $("#onclick").val();
+
+        // Inserta la pista a la fila en la que el usuario está
+        $(".letras" + filaActual + ":eq(" + posicion + ")").val(letraPista);
+
+        // Resta una pista
+        pistasRestantes = pistasRestantes - 1;
     }
 }
