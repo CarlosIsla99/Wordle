@@ -299,7 +299,8 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     // un mensaje de 'enhorabuena' y recarga la página
     if (acertados == 5) {
         alert('¡Enhorabuena, has acertado la palabra!');
-        location.reload();
+        document.getElementById('nicolas_face_animation').style.display = 'block'
+        // location.reload();
         // En caso contrario salta otro mostrando cual era la palabra a adivinar y recarga la página
     } else if (contador == 4) {
         alert("Otra vez será... La palabra era: " + backUpPalabar.toUpperCase());
@@ -364,6 +365,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
 var lista_elegidas = ['0', '0', '0', '0', '0']; // Lista de letras que han salido como pista
 var pistasRestantes = 2; // El usuario solo tiene 2 pistas
 
+// Comprueba continuamente si el usuario se ha quedado sin pistas. En ese caso, cambia la opacidad del botón
 window.setInterval( function(){
     if (pistasRestantes == 0) {
         document.getElementById("pista").style.opacity = "0.5";
