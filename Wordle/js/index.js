@@ -86,27 +86,27 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     $('#pista').val(0); // Reinicia a 0 los intentos de pista
 
     // Comprueba si todos los campos están rellenos
-    for (let y = 0; y < letrasIntroducisdasFila1.length; y++) {
-        if (letrasIntroducisdasFila1[y] != '') {
-            camposVacios = false;
-        } else {
-            camposVacios = true;
-            alert('Rellena todos los campos');
-            return;
-        }
+    if (palabraComp.length < 5 || palabraComp.length == 0) {
+        camposVacios = true;
+        document.getElementById("mensaje").innerHTML = 'Rellena todos los campos';
+        return;
+    } else {
+        camposVacios = false;
+        document.getElementById("mensaje").innerHTML = '';
     }
 
     // Comprueba si la palabra formada anteriormente existe
     for (let z = 0; z < result.length; z++) {
         if (result[z].toLowerCase() == palabraComp) {
             existe = true;
+            document.getElementById("mensaje").innerHTML = '';
             break;
         }
     }
 
     // Alert si la palabra introducida no existe y detiene el programa
     if (existe == false) {
-        alert('¡Esa palabra no existe! Escribe otra');
+        document.getElementById("mensaje").innerHTML = 'Esa palabra no existe';
         return;
     }
 
@@ -320,7 +320,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById("titulo_nicolas").innerHTML = imagen;
         var button = '';
         button += '<button id="reload" onclick="location.reload();">Jugar de nuevo</button>'
-        + '<div id="palabta_pista"><b> La palabra era: '+backUpPalabar.toUpperCase()+'</b></div>';
+            + '<div id="palabta_pista"><b> La palabra era: ' + backUpPalabar.toUpperCase() + '</b></div>';
         document.getElementById("reload_button").innerHTML = button;
         document.getElementById('nicolas_face_animation').style.backgroundColor = 'rgb(255, 255, 255, 0.7)';
         document.getElementById('nicolas_face_animation').style.border = '0.3rem solid rgb(213, 7, 7)';
@@ -386,11 +386,11 @@ var lista_elegidas = ['0', '0', '0', '0', '0']; // Lista de letras que han salid
 var pistasRestantes = 2; // El usuario solo tiene 2 pistas
 
 // Comprueba continuamente si el usuario se ha quedado sin pistas. En ese caso, cambia la opacidad del botón
-window.setInterval( function(){
+window.setInterval(function () {
     if (pistasRestantes == 0) {
         document.getElementById("pista").style.opacity = "0.5";
     }
-  },10)
+}, 10)
 
 function darPista() {
 
