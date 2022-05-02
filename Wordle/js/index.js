@@ -298,13 +298,33 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     // En caso de acertar todos los carácteres salta un alert con 
     // un mensaje de 'enhorabuena' y recarga la página
     if (acertados == 5) {
-        alert('¡Enhorabuena, has acertado la palabra!');
-        document.getElementById('nicolas_face_animation').style.display = 'block'
-        // location.reload();
+        var titulo = '';
+        titulo += '<img src="img/icon.png">';
+        document.getElementById("nicolas_face").innerHTML = titulo;
+        var imagen = '';
+        imagen += '<img src="img/enhorabuena.png">';
+        document.getElementById("titulo_nicolas").innerHTML = imagen;
+        var button = '';
+        button += '<button id="reload" onclick="location.reload();">Jugar de nuevo</button>';
+        document.getElementById("reload_button").innerHTML = button;
+        document.getElementById('nicolas_face_animation').style.backgroundColor = 'rgb(255, 255, 255, 0.7)';
+        document.getElementById('nicolas_face_animation').style.border = '0.3rem solid rgb(30, 255, 0)';
         // En caso contrario salta otro mostrando cual era la palabra a adivinar y recarga la página
     } else if (contador == 4) {
-        alert("Otra vez será... La palabra era: " + backUpPalabar.toUpperCase());
-        location.reload();
+        // alert("Otra vez será... La palabra era: " + backUpPalabar.toUpperCase());
+        var titulo = '';
+        titulo += '<img src="img/sad_nicolas.png">';
+        document.getElementById("nicolas_face").innerHTML = titulo;
+        var imagen = '';
+        imagen += '<img src="img/perdiste.png">';
+        document.getElementById("titulo_nicolas").innerHTML = imagen;
+        var button = '';
+        button += '<button id="reload" onclick="location.reload();">Jugar de nuevo</button>'
+        + '<div id="palabta_pista"><b> La palabra era: '+backUpPalabar.toUpperCase()+'</b></div>';
+        document.getElementById("reload_button").innerHTML = button;
+        document.getElementById('nicolas_face_animation').style.backgroundColor = 'rgb(255, 255, 255, 0.7)';
+        document.getElementById('nicolas_face_animation').style.border = '0.3rem solid rgb(213, 7, 7)';
+        document.getElementById('nicolas_face_animation').style.marginTop = '3rem';
     }
 
     // En caso de no haber vacíos
