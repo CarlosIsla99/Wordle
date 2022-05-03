@@ -309,6 +309,9 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById("reload_button").innerHTML = button;
         document.getElementById('nicolas_face_animation').style.backgroundColor = 'rgb(255, 255, 255, 0.7)';
         document.getElementById('nicolas_face_animation').style.border = '0.3rem solid rgb(30, 255, 0)';
+        document.getElementById('pista').style.zIndex = "-950";
+        document.getElementById('descartes').style.zIndex = "-950";
+
         // En caso contrario salta otro mostrando cual era la palabra a adivinar y recarga la página
     } else if (contador == 4) {
         // alert("Otra vez será... La palabra era: " + backUpPalabar.toUpperCase());
@@ -320,11 +323,13 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById("titulo_nicolas").innerHTML = imagen;
         var button = '';
         button += '<button id="reload" onclick="location.reload();">Jugar de nuevo</button>'
-            + '<div id="palabta_pista"><b> La palabra era: ' + backUpPalabar.toUpperCase() + '</b></div>';
+            + '<div id="palabra_pista"><b> La palabra era: ' + backUpPalabar.toUpperCase() + '</b></div>';
         document.getElementById("reload_button").innerHTML = button;
         document.getElementById('nicolas_face_animation').style.backgroundColor = 'rgb(255, 255, 255, 0.7)';
         document.getElementById('nicolas_face_animation').style.border = '0.3rem solid rgb(213, 7, 7)';
         document.getElementById('nicolas_face_animation').style.marginTop = '3rem';
+        document.getElementById('pista').style.zIndex = "-950";
+        document.getElementById('descartes').style.zIndex = "-950";
     }
 
     // En caso de no haber vacíos
