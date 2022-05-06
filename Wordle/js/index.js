@@ -422,13 +422,34 @@ function darPista() {
             }
         }
 
+        // Si ya ha acertado la letra, elige otra
+        var input = document.querySelectorAll("input");
+        var letrasNoElegir = [];
+
+        // Recoge en un array las letras que ya han sido acertadas
+        for (let i = 0; i < input.length; i++) {
+            if (input[i].style.backgroundColor == 'lightgreen') {
+                letrasNoElegir.push(input[i].value);
+            }
+        }
+
+        // Elimina las letras recogidas anteriormente de la lista que se elegirá la letra como pista
+        for (let i = 0; i < backUpPalabarDesglosada.length; i++) {
+            for (let z = 0; z < letrasNoElegir.length; z++) {
+                if (backUpPalabarDesglosada[i] == letrasNoElegir[z]) {
+                    backUpPalabarDesglosada.splice(i, 1);
+                    i = 0;
+                }
+            }
+        }
+
         // Elige una letra del array de forma aleatoria
         var letraPista = backUpPalabarDesglosada[Math.floor(Math.random() * backUpPalabarDesglosada.length)];
 
         // Guardala posición de la letra escogida
-        for (let i = 0; i < listaNoCambia.length; i++) {
-            if (letraPista == listaNoCambia[i] && lista_elegidas[i] == '0') {
-                var posicion = i;
+        for (let z = 0; z < listaNoCambia.length; z++) {
+            if (letraPista == listaNoCambia[z] && lista_elegidas[z] == '0') {
+                var posicion = z;
                 break;
             }
         }
