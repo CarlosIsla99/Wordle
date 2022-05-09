@@ -311,10 +311,10 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById('nicolas_face_animation').style.border = '0.3rem solid rgb(30, 255, 0)';
         document.getElementById('pista').style.zIndex = "-950";
         document.getElementById('descartes').style.zIndex = "-950";
+        return;
 
         // En caso contrario salta otro mostrando cual era la palabra a adivinar y recarga la página
     } else if (contador == 4) {
-        // alert("Otra vez será... La palabra era: " + backUpPalabar.toUpperCase());
         var titulo = '';
         titulo += '<img src="img/sad_nicolas.png">';
         document.getElementById("nicolas_face").innerHTML = titulo;
@@ -330,6 +330,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById('nicolas_face_animation').style.marginTop = '3rem';
         document.getElementById('pista').style.zIndex = "-950";
         document.getElementById('descartes').style.zIndex = "-950";
+        return;
     }
 
     // En caso de no haber vacíos
@@ -433,12 +434,15 @@ function darPista() {
             }
         }
 
+        
         // Elimina las letras recogidas anteriormente de la lista que se elegirá la letra como pista
         for (let i = 0; i < backUpPalabarDesglosada.length; i++) {
             for (let z = 0; z < letrasNoElegir.length; z++) {
                 if (backUpPalabarDesglosada[i] == letrasNoElegir[z]) {
                     backUpPalabarDesglosada.splice(i, 1);
+                    letrasNoElegir.splice(i, 1);
                     i = 0;
+                    z = -1;
                 }
             }
         }
@@ -448,7 +452,7 @@ function darPista() {
 
         // Guardala posición de la letra escogida
         for (let z = 0; z < listaNoCambia.length; z++) {
-            if (letraPista == listaNoCambia[z] && lista_elegidas[z] == '0') {
+            if (letraPista == listaNoCambia[z] && lista_elegidas[z] == '0' && (input[z].style.backgroundColor == 'rgb(191, 191, 191)' || input[z].style.backgroundColor == 'orange')) {
                 var posicion = z;
                 break;
             }
@@ -462,6 +466,10 @@ function darPista() {
 
         // Inserta la pista a la fila en la que el usuario está
         $(".letras" + filaActual + ":eq(" + posicion + ")").val(letraPista);
+
+        // Pone en verde la letra dada como pista y no deja modificar su casilla
+        $(".letras" + filaActual + ":eq(" + posicion + ")").css("background-color", "lightgreen");
+        $(".letras" + filaActual + ":eq(" + posicion + ")").attr('readonly', true);
 
         // Resta una pista
         pistasRestantes = pistasRestantes - 1;
