@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/confetti-falling-animation/confetti.js"></script>
     
 
 </head>
@@ -160,7 +161,8 @@
 
             <div class="botones">
                 <button id="onclick" value="0" onclick="comprobar()">Comprobar</button>
-                <button id="pista" value="2" onclick="pista()">Pista</button>
+                <button id="pista" value="2" onclick="pista()">Pista x2</button>
+                <button id="rendir" onclick="rendir()">Rendirse</button>
             </div>
 
         </div>
@@ -228,6 +230,11 @@
         function pista() {
             darPista();
         }
+
+        function rendir() {
+            rendirse();
+        }
+        
 
     </script>
 

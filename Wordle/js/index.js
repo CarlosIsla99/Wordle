@@ -287,7 +287,6 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     }
 
     // Imprime en el html (#descartes) las letras que no tiene la palabra por adivinar
-    let cont = 0;
     var parsed = "";
     for (let i = 0; i < letrasNoExistentes.length; i++) {
         var myobj = letrasNoExistentes[i];
@@ -295,8 +294,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById("descartes").innerHTML = parsed;
     }
 
-    // En caso de acertar todos los carácteres salta un alert con 
-    // un mensaje de 'enhorabuena' y recarga la página
+    // En caso de acertar todos los carácteres salta un un mensaje de enhorabuena
     if (acertados == 5) {
         var titulo = '';
         titulo += '<img src="img/icon.png">';
@@ -311,9 +309,18 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById('nicolas_face_animation').style.border = '0.3rem solid rgb(30, 255, 0)';
         document.getElementById('pista').style.zIndex = "-950";
         document.getElementById('descartes').style.zIndex = "-950";
-        return;
+        document.getElementById('mensaje').style.display = 'none';
 
-        // En caso contrario salta otro mostrando cual era la palabra a adivinar y recarga la página
+        startConfetti(); // Activa una animación de confeti en toda la pantalla
+
+        // Al pulsar "Enter" vuelve a empezar el juego
+        $(document).keyup(function (e) {
+            if (e.keyCode == 13) {
+                location.reload();
+            }
+        });
+
+        // En caso contrario salta otro de "perdiste" y mostrando cual era la palabra a adivinar
     } else if (contador == 4) {
         var titulo = '';
         titulo += '<img src="img/sad_nicolas.png">';
@@ -330,7 +337,14 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
         document.getElementById('nicolas_face_animation').style.marginTop = '3rem';
         document.getElementById('pista').style.zIndex = "-950";
         document.getElementById('descartes').style.zIndex = "-950";
-        return;
+        document.getElementById('mensaje').style.display = 'none';
+
+        // Al pulsar "Enter" vuelve a empezar el juego
+        $(document).keyup(function (e) {
+            if (e.keyCode == 13) {
+                location.reload();
+            }
+        });
     }
 
     // En caso de no haber vacíos
@@ -395,83 +409,131 @@ var pistasRestantes = 2; // El usuario solo tiene 2 pistas
 window.setInterval(function () {
     if (pistasRestantes == 0) {
         document.getElementById("pista").style.opacity = "0.5";
+        document.getElementById("pista").innerHTML = "Pista x" + pistasRestantes;
     }
 }, 10)
 
 function darPista() {
 
-    if (pistasRestantes > 0) {
-        // Divide las letras de la palabra por adivinar y las mete en un array
-        var backUpPalabarDesglosada = [];
-        for (let i = 0; i < 5; i++) {
-            backUpPalabarDesglosada.push(backUpPalabar.charAt(i));
-        }
+    if (pistasRestantes == 0) {
+        $("#pista").off('click'); // Deshabilita el boton cuando se terminan las pistas
+    } else {
 
-        // La palabra desglosada que no vamos a modificar para tener como referencia
-        var listaNoCambia = [];
-        for (let i = 0; i < 5; i++) {
-            listaNoCambia.push(backUpPalabar.charAt(i));
-        }
+        // Muestra las pistas restantes en el propio botón
+        let cantidadPista = "Pista x" + (pistasRestantes-1);
+        document.getElementById("pista").innerHTML = cantidadPista;
 
-        // Elimina la letra escogida como pista de la lista 'backUpPalabarDesglosada'
-        for (let i = 0; i < lista_elegidas.length; i++) {
-            for (let z = 0; z < backUpPalabarDesglosada.length; z++) {
-                if (lista_elegidas[i] == backUpPalabarDesglosada[z]) {
-                    backUpPalabarDesglosada.splice(z, 1);
-                    break;
+        if (pistasRestantes > 0) {
+            // Divide las letras de la palabra por adivinar y las mete en un array
+            var backUpPalabarDesglosada = [];
+            for (let i = 0; i < 5; i++) {
+                backUpPalabarDesglosada.push(backUpPalabar.charAt(i));
+            }
+
+            // La palabra desglosada que no vamos a modificar para tener como referencia
+            var listaNoCambia = [];
+            for (let i = 0; i < 5; i++) {
+                listaNoCambia.push(backUpPalabar.charAt(i));
+            }
+
+            // Elimina la letra escogida como pista de la lista 'backUpPalabarDesglosada'
+            for (let i = 0; i < lista_elegidas.length; i++) {
+                for (let z = 0; z < backUpPalabarDesglosada.length; z++) {
+                    if (lista_elegidas[i] == backUpPalabarDesglosada[z]) {
+                        backUpPalabarDesglosada.splice(z, 1);
+                        break;
+                    }
                 }
             }
-        }
 
-        // Si ya ha acertado la letra, elige otra
-        var input = document.querySelectorAll("input");
-        var letrasNoElegir = [];
+            // Si ya ha acertado la letra, elige otra
+            var input = document.querySelectorAll("input");
+            var letrasNoElegir = [];
 
-        // Recoge en un array las letras que ya han sido acertadas
-        for (let i = 0; i < input.length; i++) {
-            if (input[i].style.backgroundColor == 'lightgreen') {
-                letrasNoElegir.push(input[i].value);
-            }
-        }
-
-        
-        // Elimina las letras recogidas anteriormente de la lista que se elegirá la letra como pista
-        for (let i = 0; i < backUpPalabarDesglosada.length; i++) {
-            for (let z = 0; z < letrasNoElegir.length; z++) {
-                if (backUpPalabarDesglosada[i] == letrasNoElegir[z]) {
-                    backUpPalabarDesglosada.splice(i, 1);
-                    letrasNoElegir.splice(i, 1);
-                    i = 0;
-                    z = -1;
+            // Recoge en un array las letras que ya han sido acertadas
+            for (let i = 0; i < input.length; i++) {
+                if (input[i].style.backgroundColor == 'lightgreen') {
+                    letrasNoElegir.push(input[i].value);
                 }
             }
-        }
 
-        // Elige una letra del array de forma aleatoria
-        var letraPista = backUpPalabarDesglosada[Math.floor(Math.random() * backUpPalabarDesglosada.length)];
 
-        // Guardala posición de la letra escogida
-        for (let z = 0; z < listaNoCambia.length; z++) {
-            if (letraPista == listaNoCambia[z] && lista_elegidas[z] == '0' && (input[z].style.backgroundColor == 'rgb(191, 191, 191)' || input[z].style.backgroundColor == 'orange')) {
-                var posicion = z;
-                break;
+            // Elimina las letras recogidas anteriormente de la lista que se elegirá la letra como pista
+            for (let i = 0; i < backUpPalabarDesglosada.length; i++) {
+                for (let z = 0; z < letrasNoElegir.length; z++) {
+                    if (backUpPalabarDesglosada[i] == letrasNoElegir[z]) {
+                        backUpPalabarDesglosada.splice(i, 1);
+                        letrasNoElegir.splice(i, 1);
+                        i = 0;
+                        z = -1;
+                    }
+                }
             }
+
+            // Elige una letra del array de forma aleatoria
+            var letraPista = backUpPalabarDesglosada[Math.floor(Math.random() * backUpPalabarDesglosada.length)];
+
+            // Recoge la posición de la fila en la que está
+            var filaActual = $("#onclick").val();
+
+            // Guardala posición de la letra escogida
+            for (let z = 0; z < listaNoCambia.length; z++) {
+                if (letraPista == listaNoCambia[z] && lista_elegidas[z] == '0') {
+                    if (filaActual > 0) {
+                        if (input[z].style.backgroundColor == 'rgb(191, 191, 191)' || input[z].style.backgroundColor == 'orange') {
+                            var posicion = z;
+                            break;
+                        }
+                    } else {
+                        var posicion = z;
+                        break;
+                    }
+
+                }
+            }
+
+            // Una lista con las letras ya elegidas
+            lista_elegidas.splice(posicion, 1, letraPista);
+
+            // Inserta la pista a la fila en la que el usuario está
+            $(".letras" + filaActual + ":eq(" + posicion + ")").val(letraPista);
+
+            // Pone en verde la letra dada como pista y no deja modificar su casilla
+            $(".letras" + filaActual + ":eq(" + posicion + ")").css("background-color", "lightgreen");
+            $(".letras" + filaActual + ":eq(" + posicion + ")").attr('readonly', true);
+
+            // Resta una pista
+            pistasRestantes = pistasRestantes - 1;
         }
 
-        // Una lista con las letras ya elegidas
-        lista_elegidas.splice(posicion, 1, letraPista);
-
-        // Recoge la posición de la fila en la que está
-        var filaActual = $("#onclick").val();
-
-        // Inserta la pista a la fila en la que el usuario está
-        $(".letras" + filaActual + ":eq(" + posicion + ")").val(letraPista);
-
-        // Pone en verde la letra dada como pista y no deja modificar su casilla
-        $(".letras" + filaActual + ":eq(" + posicion + ")").css("background-color", "lightgreen");
-        $(".letras" + filaActual + ":eq(" + posicion + ")").attr('readonly', true);
-
-        // Resta una pista
-        pistasRestantes = pistasRestantes - 1;
     }
+
+}
+
+function rendirse() {
+
+    var titulo = '';
+    titulo += '<img src="img/sad_nicolas.png">';
+    document.getElementById("nicolas_face").innerHTML = titulo;
+    var imagen = '';
+    imagen += '<img src="img/perdiste.png">';
+    document.getElementById("titulo_nicolas").innerHTML = imagen;
+    var button = '';
+    button += '<button id="reload" onclick="location.reload();">Jugar de nuevo</button>'
+        + '<div id="palabra_pista"><b> La palabra era: ' + backUpPalabar.toUpperCase() + '</b></div>';
+    document.getElementById("reload_button").innerHTML = button;
+    document.getElementById('nicolas_face_animation').style.backgroundColor = 'rgb(255, 255, 255, 0.7)';
+    document.getElementById('nicolas_face_animation').style.border = '0.3rem solid rgb(213, 7, 7)';
+    document.getElementById('nicolas_face_animation').style.marginTop = '3rem';
+    document.getElementById('pista').style.zIndex = "-950";
+    document.getElementById('descartes').style.zIndex = "-950";
+    document.getElementById('mensaje').style.display = 'none';
+
+    // Al pulsar "Enter" vuelve a empezar el juego
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13) {
+            location.reload();
+        }
+    });
+
 }

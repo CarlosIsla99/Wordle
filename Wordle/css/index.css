@@ -30,6 +30,11 @@ main {
     row-gap: 0.5rem;
 }
 
+#confetti-canvas{
+    position: absolute;
+    top: 0;
+}
+
 #mensaje {
     position: absolute;
     top: 6%;
@@ -45,7 +50,8 @@ main {
     row-gap: 0.2rem;
     margin-bottom: 1rem;
     position: absolute;
-    top: 12%
+    top: 12%;
+    text-transform: capitalize;
 }
 
 .letrasNoExistente {
@@ -73,8 +79,9 @@ main {
     border-radius: 5px;
     height: 2rem;
     width: 2rem;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     text-align: center;
+    text-transform: capitalize;
 }
 
 .intentos {
@@ -96,8 +103,13 @@ button {
     font-weight: bold;
 }
 
+#rendir {
+    background-color: rgb(253, 34, 34);
+}
+
 #pista {
     position: relative;
+    background-color: rgb(243, 181, 65);
 }
 
 #publicidad1 {
@@ -459,7 +471,7 @@ button {
         border: 0.15rem solid;
         height: 5rem;
         width: 5rem;
-        font-size: 4.5rem;
+        font-size: 4rem;
     }
 
     button {
@@ -487,9 +499,11 @@ button {
     #nicolas_face_animation {
         margin-top: 2rem;
     }
+
     #titulo_nicolas>img {
         width: 30rem;
     }
+    
     #nicolas_face>img{
         width: 20rem;
         position: relative;
