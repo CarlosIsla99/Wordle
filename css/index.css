@@ -37,7 +37,7 @@ main {
 
 #mensaje {
     position: absolute;
-    top: 5%;
+    top: 2rem;
     color: rgb(206, 0, 0);
     font-weight: bold;
 }
@@ -50,7 +50,7 @@ main {
     row-gap: 0.2rem;
     margin-bottom: 1rem;
     position: absolute;
-    top: 1.5%;
+    top: 0.7rem;
     text-transform: capitalize;
 }
 
@@ -318,7 +318,7 @@ button {
     }
 
     #mensaje {
-        top: 5%;
+        top: 2rem;
     }
 
     #nicolas_face_animation {
@@ -360,7 +360,7 @@ button {
     }
 
     #mensaje {
-        top: 6%;
+        top: 3.2rem;
         font-size: 1.3rem;
     }
 
@@ -412,7 +412,7 @@ button {
     }
 
     #mensaje {
-        top: 6.5%;
+        top: 6rem;
         font-size: 2.5rem;
     }
 
