@@ -258,7 +258,7 @@ button {
     }
 }
 
-@media (min-width: 320px) and (max-width: 375px) {
+@media (max-width: 375px) {
 
     body {
         background-image: url(../img/mo_background.png);       
