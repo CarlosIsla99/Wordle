@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url(../img/background.png);
+    background-image: url(../img/mo_background.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgba(0, 206, 52, 255)
@@ -30,14 +30,14 @@ main {
     row-gap: 0.5rem;
 }
 
-#confetti-canvas{
+#confetti-canvas {
     position: absolute;
     top: 0;
 }
 
 #mensaje {
     position: absolute;
-    top: 6%;
+    top: 5%;
     color: rgb(206, 0, 0);
     font-weight: bold;
 }
@@ -50,7 +50,7 @@ main {
     row-gap: 0.2rem;
     margin-bottom: 1rem;
     position: absolute;
-    top: 12%;
+    top: 1.5%;
     text-transform: capitalize;
 }
 
@@ -77,10 +77,11 @@ main {
 .letras input {
     border: 0.15rem solid;
     border-radius: 5px;
-    height: 2rem;
-    width: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
     font-size: 1.5rem;
     text-align: center;
+    padding-top: 0.3rem;
     text-transform: capitalize;
 }
 
@@ -140,7 +141,7 @@ button {
     border: 0.1rem solid black;
     border-radius: 5px;
     padding: 0.2rem;
-    width: 20%;
+    width: 90%;
     margin-left: 1.3rem;
 }
 
@@ -152,7 +153,9 @@ button {
 
 #nicolas_face_animation {
     position: absolute;
+    margin-top: 2%;
     left: 50%;
+    width: 20rem;
     transform: translate(-50%, 0);
     padding: 0.5rem;
     border-radius: 15px;
@@ -164,6 +167,13 @@ button {
     align-items: center;
 }
 
+#titulo_nicolas>img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 19rem;
+}
+
 #reload_button {
     display: flex;
     flex-direction: column;
@@ -171,7 +181,14 @@ button {
     align-items: center;
 }
 
+#nicolas_face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #nicolas_face>img {
+    width: 15rem;
     -webkit-animation: spin 2s linear infinite;
     -moz-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
@@ -258,195 +275,24 @@ button {
     }
 }
 
-@media (max-width: 375px) {
-
-    body {
-        background-image: url(../img/mo_background.png);       
-    }
-    main {
-        margin-top: 1.5rem;
-    }
-
-    #nicolas_face_animation {
-        margin-top: 2rem;
-    }
-
-    #titulo_nicolas>img {
-        width: 15rem;
-    }
-
-    #nicolas_face>img {
-        width: 10rem;
-        position: relative;
-        left: 15%;
-        margin-bottom: 0.5rem;
-    }
-
-    #reload_button>button {
-        font-size: 0.8rem;
-    }
-
-    #info>img {
-        width: 1.2rem;
-        height: 1.2rem;
-        margin: 0.3rem;
-    }
-
-    #reglas {
-        width: 85%;
-    }
-
-    #descartes {
-        top: 3%;
-    }
-
-    #mensaje {
-        top: 54.5%;
-    }
-
-    .letras input {
-        border: 0.15rem solid;
-        height: 2.5rem;
-        width: 2.5rem;
-        font-size: 2rem;
-    }
-
-    button {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.9rem;
-    }
-}
-
-@media (min-width: 376px) and (max-width: 424px) {
-
-    body {
-        background-image: url(../img/mo_background.png);       
-    }
-
-    main {
-        margin-top: 3rem;
-    }
-
-    .letras input {
-        border: 0.15rem solid;
-        height: 3rem;
-        width: 3rem;
-        font-size: 2.7rem;
-    }
-
-    button {
-        padding: 0.25rem 0.5rem;
-        font-size: 1rem;
-    }
-}
-
-@media (min-width: 425px) and (max-width: 767px) {
-
-    body {
-        background-image: url(../img/ta_background.png);
-    }
-
-    main {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        column-gap: 2.5rem;
-    }
-
-    #reglas {
-        width: 65%;
-    }
-
-    .letras input {
-        border: 0.15rem solid;
-        height: 3rem;
-        width: 3rem;
-        font-size: 2.5rem;
-    }
-
-    #nicolas_face_animation {
-        margin-top: 3rem;
-    }
-
-    #titulo_nicolas>img{
-        width: 20rem;
-        position: relative;
-    }
-
-    #nicolas_face>img {
-        width: 10rem;
-        position: relative;
-        left: 25%;
-        margin-bottom: 0.5rem;
-    }
-
-    #descartes {
-        top: 4%;
-    }
-
-    #mensaje {
-        top: 61.5%
-    }
-
-    button {
-        padding: 0.34rem 0.75rem;
-        font-size: 0.8rem;
-    }
-
-    #publicidad1 {
-        display: inline-block;
-    }
-
-}
-
 @media (min-width: 768px) and (max-width: 1023px) {
 
     body {
         background-image: url(../img/ta_background.png);
     }
 
-    main {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        column-gap: 8rem;
-        padding-bottom: 3rem;
-        margin-top: 2.9rem;
-    }
-
     .letras input {
-        border: 0.15rem solid;
         height: 3rem;
         width: 3rem;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     button {
-        padding: 0.34rem 0.75rem;
-        font-size: 0.8rem;
-        margin-top: 0.3rem;
-    }
-
-    #publicidad1 {
-        display: inline-block;
+        font-size: 0.9rem;
     }
 
     #reglas {
         width: 30%;
-    }
-
-    #nicolas_face_animation {
-        margin-top: 5rem;
-    }
-    #titulo_nicolas>img {
-        width: 75%;
-    }
-    #nicolas_face>img{
-        width: 15rem;
-        position: relative;
-        left: 20%;
     }
 
 }
@@ -454,42 +300,21 @@ button {
 @media (min-width: 1024px) and (max-width: 1439px) {
 
     body {
-        background-image: url(../img/ta_background.png);
-    }
-
-    main {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        column-gap: 8rem;
-        padding-bottom: 3rem;
-        margin-top: 2.9rem;
+        background-image: url(../img/background.png);
     }
 
     .letras input {
-        border: 0.15rem solid;
         height: 5rem;
         width: 5rem;
         font-size: 4rem;
     }
 
     button {
-        padding: 0.34rem 0.75rem;
-        font-size: 1rem;
-        margin-top: 0.5rem;
-    }
-
-    #publicidad1 {
-        display: inline-block;
+        font-size: 1.2rem;
     }
 
     #reglas {
-        width: 30%;
-    }
-
-    #descartes {
-        top: 10%
+        width: 25%;
     }
 
     #mensaje {
@@ -497,169 +322,106 @@ button {
     }
 
     #nicolas_face_animation {
-        margin-top: 2rem;
+        width: 35rem;
     }
 
     #titulo_nicolas>img {
         width: 30rem;
     }
-    
-    #nicolas_face>img{
-        width: 20rem;
-        position: relative;
-        left: 20%;
+
+    #nicolas_face>img {
+        width: 18rem;
     }
 
 }
 
 @media (min-width: 1440px) and (max-width: 2559px) {
 
+    body {
+        background-image: url(../img/background.png);
+    }
+
     main {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        column-gap: 8rem;
-        margin-top: 4rem;
+        margin-top: 2rem;
     }
 
     .letras input {
-        border: 0.15rem solid;
         height: 7rem;
         width: 7rem;
-        font-size: 6.5rem;
-    }
-
-    #descartes {
-        top: 9%;
-    }
-
-    .letrasNoExistente {
-        width: 2.2rem;
-        height: 2.2rem;
-        font-size: 32px;
-        line-height: 1.1rem;
-    }
-
-    #mensaje {
-        font-size: 21px;
-        top: 5%;
-    }
-
-    #reglas {
-        font-size: 21px;
-        width: 25%;
+        font-size: 6rem;
     }
 
     button {
-        padding: 0.34rem 0.75rem;
         font-size: 1.5rem;
-        margin-top: 1rem;
     }
 
-    #publicidad1 {
-        display: inline-block;
+    #reglas {
+        width: 25%;
     }
 
-    #nicolas_face_animation {
-        margin-top: 5rem;
+    #mensaje {
+        top: 6%;
+        font-size: 1.3rem;
     }
 
-    #titulo_nicolas>img{
-        width: 40rem;
-        position: relative;
-    }
+    .letrasNoExistente {
+        margin-top: 0.5rem;
+        height: 2rem;
+        width: 2rem;
+        padding-top: 0.65rem;
+        border: 0.15rem solid;
 
-    #nicolas_face>img {
-        width: 25rem;
-        position: relative;
-        left: 20%;
-        margin-bottom: 0.5rem;
     }
-
-    #palabra_pista {
-        font-size: 21px;
-        margin: 1rem;
-    }
-
 }
 
 @media (min-width: 2560px) {
 
     main {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        column-gap: 8rem;
-        margin-top: 12rem;
+        margin-top: 5rem;
     }
 
     .letras input {
-        border: 0.15rem solid;
-        height: 12rem;
-        width: 12rem;
-        font-size: 10rem;
-    }
-
-    #descartes {
-        top: 10%;
-    }
-
-    .letrasNoExistente {
-        width: 5rem;
-        height: 5rem;
-        font-size: 80px;
-        line-height: 4rem;
-    }
-
-    #mensaje {
-        font-size: 40px;
-        top: 4%;
-    }
-
-    #info>img {
-        width: 3rem;
-        height: 3rem;
-        padding: 0.5rem;
-    }
-
-    #reglas {
-        font-size: 40px;
-        width: 30%;
+        border: 5px solid black;
+        border-radius: 15px;
+        height: 13rem;
+        width: 13rem;
+        font-size: 12rem;
     }
 
     button {
-        padding: 0.34rem 0.75rem;
+        border: 5px solid black;
+        border-radius: 15px;
+        font-size: 3rem;
+    }
+
+    #info>img {
+        border: 3px solid black;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+    
+    }
+    
+    #reglas {
+        border: 5px solid black;
+        border-radius: 15px;
+        padding: 0.2rem;
+        width: 40%;
+        margin-left: 1.3rem;
+        font-size: 45px;
+    }
+
+    #mensaje {
+        top: 6.5%;
         font-size: 2.5rem;
+    }
+
+    .letrasNoExistente {
         margin-top: 1rem;
+        height: 4rem;
+        width: 4rem;
+        padding-top: 1.5rem;
+        border: 3px solid;
+        font-size: 40px;
     }
-
-    #publicidad1 {
-        display: inline-block;
-    }
-
-    #nicolas_face_animation {
-        position: absolute;
-        left: 50%;
-        margin-top: 2rem;
-        transform: translate(-50%, 0);
-    }
-
-    #titulo_nicolas>img{
-        width: 80rem;
-        position: relative;
-    }
-
-    #nicolas_face>img {
-        width: 50rem;
-        position: relative;
-        left: 20%;
-        margin-bottom: 0.5rem;
-    }
-
-    #palabra_pista {
-        font-size: 32px;
-    }
-
 }

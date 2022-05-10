@@ -85,30 +85,33 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
 
     $('#pista').val(0); // Reinicia a 0 los intentos de pista
 
-    // Comprueba si todos los campos están rellenos
-    if (palabraComp.length < 5 || palabraComp.length == 0) {
-        camposVacios = true;
-        document.getElementById("mensaje").innerHTML = 'Rellena todos los campos';
-        return;
-    } else {
-        camposVacios = false;
-        document.getElementById("mensaje").innerHTML = '';
-    }
-
-    // Comprueba si la palabra formada anteriormente existe
-    for (let z = 0; z < result.length; z++) {
-        if (result[z].toLowerCase() == palabraComp) {
-            existe = true;
+    if (contador < 4) {
+        // Comprueba si todos los campos están rellenos
+        if (palabraComp.length < 5 || palabraComp.length == 0) {
+            camposVacios = true;
+            document.getElementById("mensaje").innerHTML = 'Rellena todos los campos';
+            return;
+        } else {
+            camposVacios = false;
             document.getElementById("mensaje").innerHTML = '';
-            break;
+        }
+
+        // Comprueba si la palabra formada anteriormente existe
+        for (let z = 0; z < result.length; z++) {
+            if (result[z].toLowerCase() == palabraComp) {
+                existe = true;
+                document.getElementById("mensaje").innerHTML = '';
+                break;
+            }
+        }
+
+        // Alert si la palabra introducida no existe y detiene el programa
+        if (existe == false) {
+            document.getElementById("mensaje").innerHTML = 'Esa palabra no existe';
+            return;
         }
     }
 
-    // Alert si la palabra introducida no existe y detiene el programa
-    if (existe == false) {
-        document.getElementById("mensaje").innerHTML = 'Esa palabra no existe';
-        return;
-    }
 
     // Primera fila de carácteres
     switch (fila) {
@@ -420,7 +423,7 @@ function darPista() {
     } else {
 
         // Muestra las pistas restantes en el propio botón
-        let cantidadPista = "Pista x" + (pistasRestantes-1);
+        let cantidadPista = "Pista x" + (pistasRestantes - 1);
         document.getElementById("pista").innerHTML = cantidadPista;
 
         if (pistasRestantes > 0) {
