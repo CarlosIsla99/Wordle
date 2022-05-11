@@ -85,6 +85,10 @@ main {
     text-transform: capitalize;
 }
 
+input:focus {
+    outline: none
+  }
+
 .intentos {
     display: flex;
     flex-direction: row;
@@ -372,6 +376,19 @@ button {
         border: 0.15rem solid;
 
     }
+
+    #nicolas_face_animation {
+        width: 40rem;
+    }
+
+    #titulo_nicolas>img {
+        width: 40rem;
+    }
+
+    #nicolas_face>img {
+        width: 25rem;
+    }
+
 }
 
 @media (min-width: 2560px) {
@@ -423,5 +440,17 @@ button {
         padding-top: 1.5rem;
         border: 3px solid;
         font-size: 40px;
+    }
+
+    #nicolas_face_animation {
+        width: 75rem;
+    }
+
+    #titulo_nicolas>img {
+        width: 75rem;
+    }
+
+    #nicolas_face>img {
+        width: 45rem;
     }
 }

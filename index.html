@@ -13,7 +13,7 @@
     <script src="js/index.js"></script>
     <script src="js/db_connection.js"></script>
     <script src="js/confetti-falling-animation/confetti.js"></script>
-    
+
 
 </head>
 
@@ -176,22 +176,6 @@
 
     <script>
 
-        // Auto tabula al siguiente o previo input
-        $(".letras").keyup(function (e) {
-            if (e.keyCode == 8) {
-                $(this).closest('.letras').prev().find('input').focus();
-            } else if (e.keyCode != 9) {
-                $(this).closest('.letras').next().find('input').focus();
-            }
-        });
-
-        // Ejecuta la comprobación al pulsar el enter
-        $(document).keyup(function (e) {
-            if (e.keyCode == 13) {
-                comprobar();
-            }
-        });
-
         // Envía todas las letras de los input
         function comprobar() {
 
@@ -235,7 +219,6 @@
         function rendir() {
             rendirse();
         }
-        
 
     </script>
 

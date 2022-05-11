@@ -6,6 +6,30 @@ window.addEventListener('DOMContentLoaded', function () {
         document.getElementById('inLetra' + i).setAttribute('disabled', true);
     }
 
+    document.getElementById("inLetra1").focus();
+
+    // Auto tabula al siguiente o previo input
+    $(".letras").keydown(function (e) {
+        var myInput = $(this).closest('.letras').find('input');
+        if(myInput.attr('maxlength') == myInput.val().length){
+            if (e.keyCode != 9) {
+                $(this).closest('.letras').next().find('input').focus();
+            }
+        }
+        if(myInput.attr('maxlength') != myInput.val().length){
+            if (e.keyCode == 8) {
+                $(this).closest('.letras').prev().find('input').focus();
+            }
+        }
+    });
+
+    // Ejecuta la comprobación al pulsar el enter
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13) {
+            comprobar();
+        }
+    });
+
 });
 
 let palabraParaAdivinar; // Variable para palabra por adivinar 
@@ -116,6 +140,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
     // Primera fila de carácteres
     switch (fila) {
         case '0':
+
             // Pone en verde los carácteres acertados
             for (let z = 0; z < letrasIntroducisdasFila1.length; z++) {
                 if (letrasIntroducisdasFila1[z] == palabraParaAdivinar.charAt(z)) {
@@ -368,6 +393,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
                 for (let i = 6; i <= 10; i++) {
                     document.getElementById('inLetra' + i).removeAttribute('disabled', '');
                 }
+                document.getElementById("inLetra6").focus(); // Focus al primer input de si fila
                 // Si está en la tercera línea
                 break;
             case 2:
@@ -379,6 +405,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
                 for (let i = 11; i <= 15; i++) {
                     document.getElementById('inLetra' + i).removeAttribute('disabled', '');
                 }
+                document.getElementById("inLetra11").focus(); // Focus al primer input de si fila
                 // Si está en la cuarta línea
                 break;
             case 3:
@@ -390,6 +417,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
                 for (let i = 16; i <= 20; i++) {
                     document.getElementById('inLetra' + i).removeAttribute('disabled', '');
                 }
+                document.getElementById("inLetra16").focus(); // Focus al primer input de si fila
                 // Si está en la quinta línea
                 break;
             case 4:
@@ -401,6 +429,7 @@ function juegoAdivinanza(letra1, letra2, letra3, letra4, letra5, letra6, letra7,
                 for (let i = 21; i <= 25; i++) {
                     document.getElementById('inLetra' + i).removeAttribute('disabled', '');
                 }
+                document.getElementById("inLetra21").focus(); // Focus al primer input de si fila
         }
     }
 }
