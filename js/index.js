@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // Auto tabula al siguiente o previo input
     $(".letras").keydown(function (e) {
         var myInput = $(this).closest('.letras').find('input');
-        if(myInput.attr('maxlength') == myInput.val().length){
+        if(myInput.val().length == 1){
             if (e.keyCode != 9) {
                 $(this).closest('.letras').next().find('input').focus();
             }
